@@ -1,1 +1,1 @@
-"# test" 
+Ši programa atlieka optinių šakotuvų parametrų skaičiavimą. Darbo paaiškinimas yra doc faile ir xls lentelėje.

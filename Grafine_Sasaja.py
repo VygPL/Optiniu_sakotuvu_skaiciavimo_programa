@@ -32,7 +32,7 @@ class Pirminis_langas:
         self.master.destroy() 
         self.master = tk.Tk() 
         self.app = Skaiciavimo_langas(self.master) 
-        self.master.geometry('900x500')
+        self.master.geometry('1000x500')
         self.master.title("Optinių šakotuvų parametrų skaičiavimas")
         self.master.mainloop()
 
@@ -57,6 +57,9 @@ class Pavyzdinis_langas:
 
         lin_duombaze = sesija.query(Linijos_Duombaze).all()
 
+        """
+        Pavyzdiniai sarašai, kurių duomenys paimti iš sqlAlchemy duombazės
+        """
         pav_sarasas_atstumas = []
         pav_sarasas_slopinimas = []
         pav_sarasas_galia = []
@@ -226,6 +229,7 @@ class Skaiciavimo_langas:
 
     def sarasu_skaiciavimas(self):
 
+        #Nustatoma kiek šakotuvų bus linijoje
         ivedimo_kint = int(self.ivedimas.get())
 
         global sarasas_R
@@ -268,6 +272,8 @@ class Skaiciavimo_langas:
         indeksas_ivedimam = 0
         kitamasis_Cn0_suma = 0.0
 
+        #skaičiavimai gauti šakotuvų parametrus ir juos sudėti į sarašus
+
         while indeksas <= ivedimo_kint + 1:
             kintamasis_Cn0 = skaiciavimo_objektas.signalo_slop_Cn0(sarasas_Sn_minus[indeksas_ivedimam])
             sarasas_Cn0.append(kintamasis_Cn0)
@@ -308,6 +314,8 @@ class Skaiciavimo_langas:
         for x in sarasas_R:
             kintamasis_Q = skaiciavimo_objektas.atimtis_is_1(x)
             sarasas_Q.append(kintamasis_Q)
+
+        #funkcijos iškvietimas gautus atsakymus pavaizduoti ekrane
 
         atsakymu_iskvietimas = self.sarasu_atvaizdavimas()
     
